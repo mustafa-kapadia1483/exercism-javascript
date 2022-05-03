@@ -35,21 +35,21 @@ export function timeToMixJuice(name) {
  * @returns {number} number of limes cut
  */
 export function limesToCut(wedgesNeeded, limes) {
-  let sum = 0,
-    i = 0;
-  while (sum < wedgesNeeded && i < limes.length) {
-    switch (limes[i++]) {
+  let sumOfWedges = 0,
+    countOfLimesToCut = 0;
+  while (sumOfWedges < wedgesNeeded && countOfLimesToCut < limes.length) {
+    switch (limes[countOfLimesToCut++]) {
       case "small":
-        sum += 6;
+        sumOfWedges += 6;
         break;
       case "medium":
-        sum += 8;
+        sumOfWedges += 8;
         break;
       default:
-        sum += 10;
+        sumOfWedges += 10;
     }
   }
-  return i;
+  return countOfLimesToCut;
 }
 
 /**
@@ -60,10 +60,10 @@ export function limesToCut(wedgesNeeded, limes) {
  * @returns {string[]} remaining orders after the time is up
  */
 export function remainingOrders(timeLeft, orders) {
-  let sum = 0,
+  let sumOfTimeToMixJuice = 0,
     i = 0;
-  while (sum < timeLeft && i < orders.length) {
-    sum += timeToMixJuice(orders[i]);
+  while (sumOfTimeToMixJuice < timeLeft && i < orders.length) {
+    sumOfTimeToMixJuice += timeToMixJuice(orders[i]);
     orders.shift();
   }
   return orders;
