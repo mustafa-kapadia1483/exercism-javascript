@@ -35,10 +35,13 @@ export function timeToMixJuice(name) {
  * @returns {number} number of limes cut
  */
 export function limesToCut(wedgesNeeded, limes) {
+  if (wedgesNeeded === 0) return 0;
+
   let sumOfWedges = 0,
     countOfLimesToCut = 0;
-  while (sumOfWedges < wedgesNeeded && countOfLimesToCut < limes.length) {
-    switch (limes[countOfLimesToCut++]) {
+
+  for (let lime of limes) {
+    switch (lime) {
       case "small":
         sumOfWedges += 6;
         break;
@@ -48,7 +51,10 @@ export function limesToCut(wedgesNeeded, limes) {
       default:
         sumOfWedges += 10;
     }
+    countOfLimesToCut++;
+    if (sumOfWedges >= wedgesNeeded) break;
   }
+
   return countOfLimesToCut;
 }
 
