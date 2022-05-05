@@ -46,8 +46,11 @@ export function limesToCut(wedgesNeeded, limes) {
       case "medium":
         wedgesNeeded -= 8;
         break;
-      default:
+      case "large":
         wedgesNeeded -= 10;
+        break;
+      default:
+        new Error("Unknown lime encountered");
     }
     limesCutCount++;
   }
