@@ -12,13 +12,16 @@ export const hey = message => {
     return message === message.toUpperCase();
   };
 
-  const digitMatching = /\d/;
+  const hasNumber = () => {
+    const digitMatching = /\d/;
+    return digitMatching.test(message);
+  };
+
   if (isUpperCase() && isCharPresent("?"))
     return "Calm down, I know what I'm doing!";
-  else if (isCharPresent("?")) return "Sure.";
-  else if (isUpperCase() && !digitMatching.test(message))
-    return "Whoa, chill out!";
-  else if (message.toLowerCase() === "bob") return "Fine. Be that way!";
+  if (isCharPresent("?")) return "Sure.";
+  if (message.toLowerCase() === "bob") return "Fine. Be that way!";
+  if (isUpperCase() && !hasNumber()) return "Whoa, chill out!";
 
   return "Whatever.";
 };
