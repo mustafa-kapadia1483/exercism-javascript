@@ -4,12 +4,12 @@
 //
 
 export const hey = message => {
-  const isCharPresent = character => {
-    return message.indexOf(character) !== -1;
+  const isEndingWithQuestion = character => {
+    return message.endsWith("?");
   };
 
   const isUpperCase = () => {
-    return message === message.toUpperCase();
+    return message.toUpperCase() === message;
   };
 
   const hasAlphabet = () => {
@@ -20,12 +20,11 @@ export const hey = message => {
     }
     return false;
   };
-
-  if (isUpperCase() && isCharPresent("?"))
+  if (hasAlphabet() && isUpperCase() && isEndingWithQuestion())
     return "Calm down, I know what I'm doing!";
-  if (isCharPresent("?")) return "Sure.";
-  if (message.toLowerCase() === "bob") return "Fine. Be that way!";
-  if (isUpperCase() && hasAlphabet()) return "Whoa, chill out!";
+  if (isEndingWithQuestion()) return "Sure.";
+  if (message.trim() === "") return "Fine. Be that way!";
+  if (hasAlphabet() && isUpperCase()) return "Whoa, chill out!";
 
   return "Whatever.";
 };
