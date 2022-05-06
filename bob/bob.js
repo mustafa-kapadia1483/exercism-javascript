@@ -4,7 +4,8 @@
 //
 
 export const hey = message => {
-  const isEndingWithQuestion = character => {
+  message = message.trim();
+  const isEndingWithQuestion = () => {
     return message.endsWith("?");
   };
 
@@ -20,10 +21,10 @@ export const hey = message => {
     }
     return false;
   };
+  if (message === "") return "Fine. Be that way!";
   if (hasAlphabet() && isUpperCase() && isEndingWithQuestion())
     return "Calm down, I know what I'm doing!";
   if (isEndingWithQuestion()) return "Sure.";
-  if (message.trim() === "") return "Fine. Be that way!";
   if (hasAlphabet() && isUpperCase()) return "Whoa, chill out!";
 
   return "Whatever.";
