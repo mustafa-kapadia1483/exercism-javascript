@@ -10,13 +10,11 @@
  * @returns {Visitor} the visitor that was created
  */
 export function createVisitor(name, age, ticketId) {
-  const visitorObject = {
+  return {
     name,
     age,
     ticketId,
   };
-
-  return visitorObject;
 }
 
 /**
@@ -39,13 +37,10 @@ export function revokeTicket(visitor) {
  */
 export function ticketStatus(tickets, ticketId) {
   let ticketStatus = "unknown ticket id";
-  for (const ticket in tickets) {
-    if (ticket === ticketId) {
-      const ticketValue = tickets[ticket];
-      ticketStatus =
-        ticketValue === null ? "not sold" : `sold to ${ticketValue}`;
-      break;
-    }
+
+  if (tickets.hasOwnProperty(ticketId)) {
+    const ticketValue = tickets[ticketId];
+    ticketStatus = ticketValue === null ? "not sold" : `sold to ${ticketValue}`;
   }
 
   return ticketStatus;
@@ -62,11 +57,9 @@ export function ticketStatus(tickets, ticketId) {
 export function simpleTicketStatus(tickets, ticketId) {
   let ticketStatus = "invalid ticket !!!";
 
-  for (const ticket in tickets) {
-    if (ticket === ticketId && tickets[ticket] !== null) {
-      ticketStatus = tickets[ticket];
-      break;
-    }
+  const ticketValue = tickets[ticketId];
+  if (tickets.hasOwnProperty(ticketId) && ticketValue !== null) {
+    ticketStatus = ticketValue;
   }
 
   return ticketStatus;
