@@ -5,27 +5,33 @@
 
 export const hey = message => {
   message = message.trim();
-  const isEndingWithQuestion = () => {
+
+  if (message === "") return "Fine. Be that way!";
+  if (isYelling() && isEndingWithQuestion())
+    return "Calm down, I know what I'm doing!";
+  if (isEndingWithQuestion()) return "Sure.";
+  if (isYelling()) return "Whoa, chill out!";
+
+  return "Whatever.";
+
+  function isEndingWithQuestion() {
     return message.endsWith("?");
-  };
+  }
 
-  const isUpperCase = () => {
+  function isUpperCase() {
     return message.toUpperCase() === message;
-  };
+  }
 
-  const hasAlphabet = () => {
+  function hasAlphabet() {
     for (const char of message) {
       if (char.toLowerCase() !== char.toUpperCase()) {
         return true;
       }
     }
     return false;
-  };
-  if (message === "") return "Fine. Be that way!";
-  if (hasAlphabet() && isUpperCase() && isEndingWithQuestion())
-    return "Calm down, I know what I'm doing!";
-  if (isEndingWithQuestion()) return "Sure.";
-  if (hasAlphabet() && isUpperCase()) return "Whoa, chill out!";
+  }
 
-  return "Whatever.";
+  function isYelling() {
+    return hasAlphabet() && isUpperCase();
+  }
 };
