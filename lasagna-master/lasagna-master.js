@@ -12,8 +12,8 @@ export function preparationTime(layers, preparationTime = 2) {
 }
 
 export function quantities(layers) {
-  function getCount(filter) {
-    return layers.filter(layer => layer === filter).length;
+  function getCount(ingredient) {
+    return layers.filter(layer => layer === ingredient).length;
   }
 
   return {
