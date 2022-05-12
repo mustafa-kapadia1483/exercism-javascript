@@ -22,16 +22,7 @@ export function twoSum(array1, array2) {
  * @returns {boolean}  whether the number is a palindrome or not
  */
 export function luckyNumber(value) {
-  let reverse = 0;
-  let valueCopy = value;
-
-  while (valueCopy > 0) {
-    const d = valueCopy % 10;
-    reverse = reverse * 10 + d;
-    valueCopy = Math.floor(valueCopy / 10);
-  }
-
-  return reverse === value;
+  return String(value) === Array.from(String(value)).reverse().join("");
 }
 
 /**
