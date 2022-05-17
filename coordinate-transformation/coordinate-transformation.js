@@ -15,7 +15,7 @@
  *  translated coordinate pair in the form [x, y]
  */
 export function translate2d(dx, dy) {
-  return function moveCoordinatesRight2Px(moveX, moveY) {
+  return function (moveX, moveY) {
     return [dx + moveX, dy + moveY];
   };
 }
@@ -31,7 +31,7 @@ export function translate2d(dx, dy) {
  *  scaled coordinate pair in the form [x, y]
  */
 export function scale2d(sx, sy) {
-  return function doubleScale(scaleX, scaleY) {
+  return function (scaleX, scaleY) {
     return [sx * scaleX, sy * scaleY];
   };
 }
@@ -47,7 +47,7 @@ export function scale2d(sx, sy) {
  *  transformed coordinate pair in the form [x, y]
  */
 export function composeTransform(f, g) {
-  return function composedTransformations(x, y) {
+  return function (x, y) {
     return g(...f(x, y));
   };
 }
@@ -64,7 +64,7 @@ export function composeTransform(f, g) {
 export function memoizeTransform(f) {
   let cache = {};
 
-  return function memoizedScale(x, y) {
+  return function (x, y) {
     if (cache.x === x && cache.y === y) {
       return cache.result;
     }
