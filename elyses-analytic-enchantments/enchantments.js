@@ -29,7 +29,7 @@ export function getCardPosition(stack, card) {
  * @returns {boolean} true if card is in the stack, false otherwise
  */
 export function doesStackIncludeCard(stack, card) {
-  return stack.some(stackCard => stackCard === card);
+  return stack.includes(card);
 }
 
 /**
