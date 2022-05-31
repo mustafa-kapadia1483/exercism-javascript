@@ -11,7 +11,11 @@
 export function cardTypeCheck(stack, card) {
   let cardOccurrence = 0;
   // Checking if a card in stack is equal to card provided as parameter
-  stack.forEach(stackCard => stackCard === card && cardOccurrence++);
+  stack.forEach(stackCard => {
+    if (stackCard === card) {
+      cardOccurrence++;
+    }
+  });
   return cardOccurrence;
 }
 
@@ -24,9 +28,14 @@ export function cardTypeCheck(stack, card) {
  */
 export function determineOddEvenCards(stack, type) {
   let countOfType = 0;
-  stack.forEach(stackCard => isEven(stackCard) === type && countOfType++);
+  stack.forEach(stackCard => {
+    if (isEven(stackCard) === type) {
+      countOfType++;
+    }
+  });
   return countOfType;
-  function isEven(num) {
-    return num % 2 === 0;
-  }
+}
+
+function isEven(num) {
+  return num % 2 === 0;
 }
