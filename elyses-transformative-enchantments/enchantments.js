@@ -44,7 +44,7 @@ export function middleTwo(deck) {
  */
 
 export function sandwichTrick(deck) {
-  const mid = (deck.length - 1) / 2;
+  const mid = (deck.length - 2) / 2;
   deck.splice(mid, 0, deck.pop(), deck.shift());
   return deck;
 }
