@@ -19,12 +19,7 @@ export function seeingDouble(deck) {
  * @returns {number[]} deck with triplicate 3s
  */
 export function threeOfEachThree(deck) {
-  return deck.reduce((accumulator, currentValue) => {
-    currentValue === 3
-      ? accumulator.push(...Array(3).fill(currentValue))
-      : accumulator.push(currentValue);
-    return accumulator;
-  }, []);
+  return deck.flatMap(card => (card === 3 ? Array(3).fill(card) : [card]));
 }
 
 /**
@@ -49,13 +44,9 @@ export function middleTwo(deck) {
  */
 
 export function sandwichTrick(deck) {
-  const deckLength = deck.length;
-
-  const firstHalf = deck.slice(1, deckLength / 2);
-  const middle = [deck[deckLength - 1], deck[0]];
-  const secondHalf = deck.slice(deckLength / 2, deckLength - 1);
-
-  return firstHalf.concat(middle).concat(secondHalf);
+  const mid = (deck.length - 1) / 2;
+  deck.splice(mid, 0, deck.pop(), deck.shift());
+  return deck;
 }
 
 /**
@@ -77,11 +68,7 @@ export function twoIsSpecial(deck) {
  * @returns {number[]} ordered deck
  */
 export function perfectlyOrdered(deck) {
-  deck.sort((card1, card2) => {
-    if (card1 > card2) return 1;
-    else if (card1 < card2) return -1;
-    return 0;
-  });
+  deck.sort((card1, card2) => card1 - card2);
   return deck;
 }
 
